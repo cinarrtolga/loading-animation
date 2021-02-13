@@ -44,8 +44,6 @@ class LoadingButton @JvmOverloads constructor(
     private var previousText = ""
 
     init {
-        isClickable = true
-
         //Custom attributes. They defined on content_main.xml and attrs.xml files.
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
             buttonBackgroundColor = getColor(R.styleable.LoadingButton_backgroundColor, 0)
@@ -74,7 +72,7 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
         drawStaticButtonShape(canvas)
 
-        if(buttonState == ButtonState.Loading) {
+        if (buttonState == ButtonState.Loading) {
             drawAnimatedButtonShape(canvas)
         }
 
@@ -95,11 +93,11 @@ class LoadingButton @JvmOverloads constructor(
     private fun drawAnimatedButtonShape(canvas: Canvas?) {
         paint.color = resources.getColor(R.color.colorPrimaryDark)
         canvas!!.drawRect(
-                0.toFloat(),
-                0.toFloat(),
-                0 + loadedPercentage,
-                heightSize.toFloat(),
-                paint
+            0.toFloat(),
+            0.toFloat(),
+            0 + loadedPercentage,
+            heightSize.toFloat(),
+            paint
         )
     }
 
@@ -115,12 +113,12 @@ class LoadingButton @JvmOverloads constructor(
 
     private fun loadAnimation() {
         val animator = ValueAnimator.ofInt(0, 100).apply {
-            duration = 2000
+            duration = 3000
             interpolator = LinearInterpolator()
             addUpdateListener { valueAnimator ->
                 loadedPercentage = ((valueAnimator.animatedValue as Int).toFloat() / 100) * widthSize
 
-                if(valueAnimator.animatedValue == 100) {
+                if (valueAnimator.animatedValue == 100) {
                     buttonState = ButtonState.Completed
                 }
 

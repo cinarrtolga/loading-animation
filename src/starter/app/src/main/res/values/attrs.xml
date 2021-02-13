@@ -5,5 +5,7 @@
         <attr name="backgroundColor" format="color" />
         <attr name="buttonFontColor" format="color"/>
         <attr name="buttonText" format="string" />
+        <attr name="totalByteSize" format="integer" />
+        <attr name="downloadedByteSize" format="integer" />
     </declare-styleable>
 </resources>

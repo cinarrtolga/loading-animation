@@ -48,25 +48,24 @@
 
         <RadioButton
             android:id="@+id/radio_glide"
+            style="@style/RadioButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/glide_text"
-            style="@style/RadioButtonStyle" />
+            android:text="@string/glide_text" />
 
         <RadioButton
             android:id="@+id/radio_loadapp"
+            style="@style/RadioButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/load_app_text"
-            style="@style/RadioButtonStyle"  />
+            android:text="@string/load_app_text" />
 
         <RadioButton
             android:id="@+id/radio_retrofit"
+            style="@style/RadioButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retrofit_text"
-            style="@style/RadioButtonStyle"  />
-
+            android:text="@string/retrofit_text" />
     </RadioGroup>
 
     <com.udacity.LoadingButton

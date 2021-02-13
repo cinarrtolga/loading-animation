@@ -21,4 +21,15 @@
     <string name="header_image_description">Main page header area.</string>
     <string name="download_image_description">Download image on the page header.</string>
     <string name="option_required">Please select the file to download.</string>
+
+    <string name="general_notification_channel_id">general_notification_channel</string>
+    <string name="general_notification_channel">General notification</string>
+    <string name="notification_detail_button">Details</string>
+    <string name="filename_text">File name:</string>
+    <string name="file_description_text">File Description</string>
+    <string name="status_text">Status:</string>
+    <string name="status_description_text">Success</string>
+    <string name="ok_button">OK</string>
+    <string name="download_success">Download completed.</string>
+    <string name="download_fail">Failed to file download.</string>
 </resources>
