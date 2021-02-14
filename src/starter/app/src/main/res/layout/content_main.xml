@@ -12,15 +12,15 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/header_image"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@string/header_image_description"
         android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorPrimaryDark"
-        tools:srcCompat="@color/colorPrimaryDark" />
+        app:srcCompat="@drawable/header_background"
+        tools:srcCompat="@drawable/header_background" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/download_image"

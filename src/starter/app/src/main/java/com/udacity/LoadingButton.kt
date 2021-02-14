@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.content.withStyledAttributes
@@ -16,6 +17,7 @@ class LoadingButton @JvmOverloads constructor(
     private var widthSize = 0
     private var heightSize = 0
     private var loadedPercentage = 0f
+    private var circleLoadedPercentage = 0f
 
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         when (new) {
@@ -74,6 +76,7 @@ class LoadingButton @JvmOverloads constructor(
 
         if (buttonState == ButtonState.Loading) {
             drawAnimatedButtonShape(canvas)
+            drawCircle(canvas)
         }
 
         writeButtonText(canvas)
@@ -101,6 +104,23 @@ class LoadingButton @JvmOverloads constructor(
         )
     }
 
+    private fun drawCircle(canvas: Canvas?){
+        paint.color = resources.getColor(R.color.colorAccent)
+
+        val leftSize = (widthSize / 2) + 220f
+        val topSize = (heightSize / 2) - 45f
+        val rightSize = (widthSize / 2) + 310f
+        val bottomSize = (heightSize / 2) + 45f
+        val completedCircle = circleLoadedPercentage * 360f
+
+        canvas!!.drawArc(
+                leftSize,
+                topSize,
+                rightSize,
+                bottomSize,
+                0f, completedCircle, true, paint)
+    }
+
     private fun writeButtonText(canvas: Canvas?) {
         paint.color = buttonFontColor
         canvas!!.drawText(
@@ -113,14 +133,12 @@ class LoadingButton @JvmOverloads constructor(
 
     private fun loadAnimation() {
         val animator = ValueAnimator.ofInt(0, 100).apply {
-            duration = 3000
+            repeatCount = ValueAnimator.INFINITE
+            duration = 5000
             interpolator = LinearInterpolator()
             addUpdateListener { valueAnimator ->
                 loadedPercentage = ((valueAnimator.animatedValue as Int).toFloat() / 100) * widthSize
-
-                if (valueAnimator.animatedValue == 100) {
-                    buttonState = ButtonState.Completed
-                }
+                circleLoadedPercentage = (valueAnimator.animatedValue as Int).toFloat() / 100
 
                 invalidate()
             }
@@ -140,5 +158,9 @@ class LoadingButton @JvmOverloads constructor(
         widthSize = w
         heightSize = h
         setMeasuredDimension(w, h)
+    }
+
+    fun completeAnimation(){
+        buttonState = ButtonState.Completed
     }
 }

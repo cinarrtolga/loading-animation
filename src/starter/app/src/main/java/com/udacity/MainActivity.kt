@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.udacity.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_main.view.*
 
 class MainActivity : AppCompatActivity() {
     private var downloadID: Long = 0
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                     resources.getString(R.string.option_required),
                     Toast.LENGTH_SHORT
                 ).show()
+                custom_button.completeAnimation()
             } else {
                 download()
             }
@@ -75,6 +77,8 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+
+            custom_button.completeAnimation()
 
             var statusFlag = false
             val query = DownloadManager.Query().setFilterById(id!!)
